@@ -1,125 +1,57 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, UserRole } from "@prisma/client";
 const prisma = new PrismaClient();
 
-const main = async () => {
-  // Create Data
-  //   const result = await prisma.post.create({
-  //     data:{
-  //         title :"This is title 2",
-  //         content:"This is content 2",
-  //         authorName:"Humayun Kabir"
-  //     }
+const create = async () => {
+  //   console.log('Create...');
+  // Create User
+  //   const createUser = await prisma.user.create({
+  //     data: {
+  //       username: "user2",
+  //       email: "user2@gamil.com",
+  //       role: UserRole.user,
+  //     },
   //   });
-  //   console.log(result);
+  //   console.log(createUser);
+  // Create Profile Info
+  //   const createProfile = await prisma.profile.create({
+  //     data: {
+  //       userId: 1,
+  //       bio: "this is bio...",
+  //     },
+  //   });
+  //   console.log(createProfile);
+  //   Create Category
+  //   const createCategory = await prisma.category.create({
+  //     data: {
+  //       name: "programming",
+  //     },
+  //   });
+  //   console.log(createCategory);
 
-  // Create Multiple Data Into DB
+  //create post
 
-  const result = await prisma.post.createMany({
-    data: [
-      {
-        title: "Title 1",
-        content: "Content 1",
-        authorName: "Author 1",
+  const createPost = await prisma.post.create({
+    data: {
+      title: "this is title",
+      content: "this is content of the post",
+      authorId: 1,
+      postCategory: {
+        create: {
+          categoryId: 3,
+          //   category: {
+          //     connect: {
+          //       id: 1,
+          //     },
+          //   },
+        },
       },
-      {
-        title: "Title 2",
-        content: "Content 2",
-        authorName: "Author 2",
-      },
-      {
-        title: "Title 1",
-        content: "Content 1",
-        authorName: "Author 1",
-      },
-      {
-        title: "Title 2",
-        content: "Content 2",
-        authorName: "Author 2",
-      },
-      {
-        title: "Title 1",
-        content: "Content 1",
-        authorName: "Author 1",
-      },
-      {
-        title: "Title 2",
-        content: "Content 2",
-        authorName: "Author 2",
-      },
-      {
-        title: "Title 1",
-        content: "Content 1",
-        authorName: "Author 1",
-      },
-      {
-        title: "Title 2",
-        content: "Content 2",
-        authorName: "Author 2",
-      },
-      {
-        title: "Title 1",
-        content: "Content 1",
-        authorName: "Author 1",
-      },
-      {
-        title: "Title 2",
-        content: "Content 2",
-        authorName: "Author 2",
-      },
-      {
-        title: "Title 1",
-        content: "Content 1",
-        authorName: "Author 1",
-      },
-      {
-        title: "Title 2",
-        content: "Content 2",
-        authorName: "Author 2",
-      },
-      {
-        title: "Title 1",
-        content: "Content 1",
-        authorName: "Author 1",
-      },
-      {
-        title: "Title 2",
-        content: "Content 2",
-        authorName: "Author 2",
-      },
-      {
-        title: "Title 1",
-        content: "Content 1",
-        authorName: "Author 1",
-      },
-      {
-        title: "Title 2",
-        content: "Content 2",
-        authorName: "Author 2",
-      },
-      {
-        title: "Title 1",
-        content: "Content 1",
-        authorName: "Author 1",
-      },
-      {
-        title: "Title 2",
-        content: "Content 2",
-        authorName: "Author 2",
-      },
-      {
-        title: "Title 1",
-        content: "Content 1",
-        authorName: "Author 1",
-      },
-      {
-        title: "Title 2",
-        content: "Content 2",
-        authorName: "Author 2",
-      },
-    ],
+    },
+    include: {
+      postCategory: true,
+    },
   });
 
-  console.log(result);
+  console.log(createPost);
 };
 
-main();
+create();
